@@ -1,0 +1,11 @@
+  Find No. of Subset of array nums having sum s
+  
+  
+  int subsetSum(vector<int>& nums, int s) {
+        int dp[s + 1] = { 0 };
+        dp[0] = 1;
+        for (int n : nums)
+            for (int i = s; i >= n; i--)
+                dp[i] += dp[i - n];
+        return dp[s];
+    }
