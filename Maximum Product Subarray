@@ -1,0 +1,22 @@
+Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int n=nums.size();
+        int ans=nums[0];
+        
+        for(int i=1,imax=ans,imin=ans;i<n;i++)
+        {
+            if(nums[i]<0)
+            swap(imax,imin);
+            
+            imax=max(imax*nums[i],nums[i]);
+            imin=min(imin*nums[i],nums[i]);
+            
+            ans=max(imax,ans);
+        }
+        
+        return ans;
+    }
+};
