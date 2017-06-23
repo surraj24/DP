@@ -1,0 +1,34 @@
+For now, suppose you are a dominator of m 0s and n 1s respectively. On the other hand, there is an array with strings 
+consisting of only 0s and 1s.
+Now your task is to find the maximum number of strings that you can form with given m 0s and n 1s. Each 0 and 1 can be used at most once.
+
+
+
+class Solution {
+public:
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector< vector<int> > v(m+1 , vector<int>(n+1,0));
+        
+        for(int i=0;i<strs.size();i++)
+        {
+            int count0=0;
+            for(int j=0;j<strs[i].size();j++)
+            {
+                if(strs[i][j]=='0')
+                count0++;
+            }
+            int count1=strs[i].size()-count0;
+            
+            for(int k=m;k>=count0;k--)
+            {
+                for(int j=n;j>=count1;j--)
+                {
+                    v[k][j]=max(v[k][j],v[k-count0][j-count1]+1);
+                }
+            }
+        }
+        
+        return v[m][n];
+        
+    }
+};
