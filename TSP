@@ -1,5 +1,5 @@
 O((n^2)*(2^n))
-
+Bitmasking+DP
 
 #define size 10 //maximum 10 cities
 #define min(a,b) a>b?b:a
